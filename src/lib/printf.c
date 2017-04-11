@@ -3,11 +3,11 @@
 	if you have a working putchar, leave it commented out.
 	If not, uncomment the define below and
 	replace outbyte(c) by your own function call.
-
-#define putchar(c) outbyte(c)
 */
 
-#include <stdarg.h>
+#include "lpc111x.h"
+#include "stdio.h"
+#include "loc_incl.h"
 
 void U0putch(int d) {
 	while (!(U0LSR & 0x20));
@@ -19,7 +19,6 @@ int U0getch() {
 	return U0RBR;
 }
 
-#define putchar(d) U0putch(d)
 
 static void printchar(char **str, int c)
 {
@@ -31,9 +30,6 @@ static void printchar(char **str, int c)
 	}
 	else (void)putchar(c);
 }
-
-#define PAD_RIGHT 1
-#define PAD_ZERO 2
 
 static int prints(char **out, const char *string, int width, int pad)
 {
@@ -64,9 +60,6 @@ static int prints(char **out, const char *string, int width, int pad)
 
 	return pc;
 }
-
-/* the following should be enough for 32 bit int */
-#define PRINT_BUF_LEN 12
 
 static int printi(char **out, int i, int b, int sg, int width, int pad, int letbase)
 {

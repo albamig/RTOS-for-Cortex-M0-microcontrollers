@@ -1,4 +1,6 @@
 #include "../lib/lpc111x.h"
+#include "systick.h"
+#include "../lib/stdio.h"
 
 void init_systick(int int_time) {
 	SYST_RVR = (int_time/1000)*48000000;	

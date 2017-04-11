@@ -1,26 +1,22 @@
 TOOL = /opt/arm-toolchain/bin/arm-none-eabi
-
 CC = $(TOOL)-gcc
-CP = $(TOOL)-objcopy
-
-BT2 = ../../bootloader/bt2 -sb 115200 -s 115200
+LD = $(TOOL)-gcc
 
 l = ../lib
-CFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles
-SRCS = main.c systick.c
+CFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles -c
+LDFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles
+
+OBJS = main.o systick.o
 LIB = $(l)/lpc111x.h $(l)/printf.c $(l)/init.c
 
-all: code.bin 
+all: $(OBJS) 
+	$(LD) $(LDFLAGS) $(OBJS) -o kernel
 
-code.bin: code.elf
-	$(CP) -O binary $< $@
+main.o: main.c
+	$(CC) $(CFLAGS) $^
 
-code.elf: $(SRCS) $(LIB) linker_scriptRAM.ld Makefile 
-	$(CC) $(CFLAGS) -Wl,-Tlinker_scriptRAM.ld -Wl,-Map=a.map -o $@ $(l)/init.c systick.c $(l)/printf.c main.c
-	$(TOOL)-size $@
+systick.o: systick.c
+	$(CC) $(CFLAGS) $^
 
 clean:
-	rm -rf *.elf a.map *~ *.bin *.elf
-
-execute: code.bin
-	$(BT2) -d /dev/tty.usbserial-AH00LSB3 -s 115200 -sb 115200 -l code.bin
+	rm *.o kernel

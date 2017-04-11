@@ -1,11 +1,14 @@
-#include "lpc111x.h"
-#include "system.h"
+#include "../lib/lpc111x.h"
+#include "../lib/stdio.h"
+#include "../lib/delay.h"
+#include "../etc/sys_conf.h"
 
 /////////////////////////////////////////////////////////////
 //				Prototypes for vector table
 void Reset_init(void);
+extern int main();
 void Default_Handler(void);
-__attribute__ ((weak)) void systick_handler(void);
+__attribute__((weak)) void systick_handler(void);
 
 /////////////////////////////////////////////////////////////
 //                  	VECTOR TABLE
@@ -224,11 +227,6 @@ void __attribute__((naked,section(".bcrp"))) exit(int op)
 	while(1);
 }
 
-void __attribute__((naked, section(".bcrp"), aligned(8))) delay_loop(unsigned int d){
-	asm volatile("Ldelay_loop: sub r0, #1"); 
-	asm volatile("bne Ldelay_loop"); 
-	asm volatile("bx lr");
-}
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////// CODE READ PROTECTION (@ 0x2FC, see linker_script) /////////////////
 //////////////////////////////////////////////////////////////////////////////////////
