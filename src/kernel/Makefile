@@ -4,13 +4,12 @@ LD = $(TOOL)-gcc
 
 l = ../lib
 CFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles -c
-LDFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles
+LDFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles 
 
 OBJS = main.o systick.o
-LIB = $(l)/lpc111x.h $(l)/printf.c $(l)/init.c
 
 all: $(OBJS) 
-	$(LD) $(LDFLAGS) $(OBJS) -o kernel
+	$(LD) $(LDFLAGS) $(OBJS) $(l)/lib.a -Wl,-T../boot/linker_scriptRAM.ld -o kernel
 
 main.o: main.c
 	$(CC) $(CFLAGS) $^
