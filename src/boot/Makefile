@@ -2,12 +2,15 @@ TOOL = /opt/arm-toolchain/bin/arm-none-eabi
 CC = $(TOOL)-gcc
 
 CFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles -c
+
+l = ../lib
+
 OBJS = init.o
 
 all: $(OBJS) 
 
-init.o: init.c
+%.o: %.c
 	$(CC) $(CFLAGS) $^
 
 clean:
-	rm *.o
+	rm -rf *.o

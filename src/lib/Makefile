@@ -4,19 +4,17 @@ AR = $(TOOL)-ar
 RL = $(TOOL)-ranlib
 
 CFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles -c
+
 OBJS = delay.o printf.o
 
 all: lib.a
 
 lib.a: $(OBJS)
 	$(AR) -r $@ $(OBJS)
-	$(RL) lib.a
+	$(RL) $@
 
-delay.o: delay.c
-	$(CC) $(CFLAGS) $^
-
-printf.o: printf.c
+%.o: %.c
 	$(CC) $(CFLAGS) $^
 
 clean:
-	rm *.o
+	rm -rf *.o lib.a

@@ -1,0 +1,316 @@
+Archive member included to satisfy reference by file (symbol)
+
+lib/lib.a(delay.o)            boot/init.o (delay_loop)
+lib/lib.a(printf.o)           kernel/main.o (_printf)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_udivsi3.o)
+                              lib/lib.a(printf.o) (__aeabi_uidiv)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+                              /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_fixunssfsi.o)
+                              kernel/systick.o (__aeabi_f2uiz)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(divsf3.o)
+                              kernel/systick.o (__aeabi_fdiv)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(mulsf3.o)
+                              kernel/systick.o (__aeabi_fmul)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(subsf3.o)
+                              /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_fixunssfsi.o) (__aeabi_fsub)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(fixsfsi.o)
+                              /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_fixunssfsi.o) (__aeabi_f2iz)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_arm_cmpsf2.o)
+                              /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_fixunssfsi.o) (__aeabi_fcmpge)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_clzsi2.o)
+                              /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(divsf3.o) (__clzsi2)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(eqsf2.o)
+                              /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_arm_cmpsf2.o) (__eqsf2)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(gesf2.o)
+                              /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_arm_cmpsf2.o) (__gesf2)
+/opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(lesf2.o)
+                              /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_arm_cmpsf2.o) (__lesf2)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x0000000000000000 0x0000000000008000
+ram              0x0000000010000000 0x0000000000001d00
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000010000000                . = ORIGIN (ram)
+
+.text           0x0000000010000000     0x10bc
+ *(.vectors)
+ .vectors       0x0000000010000000       0xc0 boot/init.o
+                0x0000000010000000                Vectors
+ *(.bcrp)
+ .bcrp          0x00000000100000c0       0x8c boot/init.o
+                0x00000000100000c0                Default_Handler
+                0x00000000100000ec                Reset_init
+                0x0000000010000148                exit
+ *(.crp)
+ .crp           0x000000001000014c        0x4 boot/init.o
+                0x000000001000014c                CRP
+ *(.text)
+ .text          0x0000000010000150        0x0 kernel/main.o
+ .text          0x0000000010000150       0x48 kernel/systick.o
+                0x0000000010000150                init_systick
+                0x0000000010000188                systick_handler
+ .text          0x0000000010000198       0xd0 boot/init.o
+                0x0000000010000198                clock_init
+                0x00000000100001dc                sys_init
+ .text          0x0000000010000268        0x8 lib/lib.a(delay.o)
+                0x0000000010000268                delay_loop
+ .text          0x0000000010000270      0x2a4 lib/lib.a(printf.o)
+                0x0000000010000270                U0putch
+                0x00000000100004cc                U0getch
+                0x00000000100004e0                _printf
+                0x00000000100004f8                _sprintf
+ .text          0x0000000010000514      0x114 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_udivsi3.o)
+                0x0000000010000514                __udivsi3
+                0x0000000010000514                __aeabi_uidiv
+                0x0000000010000620                __aeabi_uidivmod
+ .text          0x0000000010000628        0x4 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+                0x0000000010000628                __aeabi_ldiv0
+                0x0000000010000628                __aeabi_idiv0
+ .text          0x000000001000062c       0x30 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_fixunssfsi.o)
+                0x000000001000062c                __aeabi_f2uiz
+                0x000000001000062c                __fixunssfsi
+ .text          0x000000001000065c      0x290 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(divsf3.o)
+                0x000000001000065c                __aeabi_fdiv
+ .text          0x00000000100008ec      0x240 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(mulsf3.o)
+                0x00000000100008ec                __aeabi_fmul
+ .text          0x0000000010000b2c      0x338 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(subsf3.o)
+                0x0000000010000b2c                __aeabi_fsub
+ .text          0x0000000010000e64       0x40 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(fixsfsi.o)
+                0x0000000010000e64                __aeabi_f2iz
+ .text          0x0000000010000ea4       0x74 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_arm_cmpsf2.o)
+                0x0000000010000ea4                __aeabi_cfrcmple
+                0x0000000010000eac                __aeabi_cfcmple
+                0x0000000010000eac                __aeabi_cfcmpeq
+                0x0000000010000ebc                __aeabi_fcmpeq
+                0x0000000010000ec8                __aeabi_fcmplt
+                0x0000000010000edc                __aeabi_fcmple
+                0x0000000010000ef0                __aeabi_fcmpgt
+                0x0000000010000f04                __aeabi_fcmpge
+ .text          0x0000000010000f18       0x3c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_clzsi2.o)
+                0x0000000010000f18                __clzsi2
+ .text          0x0000000010000f54       0x4c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(eqsf2.o)
+                0x0000000010000f54                __nesf2
+                0x0000000010000f54                __eqsf2
+ .text          0x0000000010000fa0       0x80 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(gesf2.o)
+                0x0000000010000fa0                __gtsf2
+                0x0000000010000fa0                __gesf2
+ .text          0x0000000010001020       0x84 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(lesf2.o)
+                0x0000000010001020                __lesf2
+                0x0000000010001020                __ltsf2
+ *(.text.startup)
+ .text.startup  0x00000000100010a4       0x18 kernel/main.o
+                0x00000000100010a4                main
+
+.rodata.str1.1  0x00000000100010bc       0x6e
+ .rodata.str1.1
+                0x00000000100010bc        0xe kernel/main.o
+ .rodata.str1.1
+                0x00000000100010ca       0x2c kernel/systick.o
+ .rodata.str1.1
+                0x00000000100010f6       0x2d boot/init.o
+ .rodata.str1.1
+                0x0000000010001123        0x7 lib/lib.a(printf.o)
+
+.rodata         0x000000001000112c       0xc0
+ .rodata        0x000000001000112c       0x80 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(divsf3.o)
+ .rodata        0x00000000100011ac       0x40 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(mulsf3.o)
+
+.glue_7         0x00000000100011ec        0x0
+ .glue_7        0x00000000100011ec        0x0 linker stubs
+
+.glue_7t        0x00000000100011ec        0x0
+ .glue_7t       0x00000000100011ec        0x0 linker stubs
+
+.vfp11_veneer   0x00000000100011ec        0x0
+ .vfp11_veneer  0x00000000100011ec        0x0 linker stubs
+
+.v4_bx          0x00000000100011ec        0x0
+ .v4_bx         0x00000000100011ec        0x0 linker stubs
+
+.iplt           0x00000000100011ec        0x0
+ .iplt          0x00000000100011ec        0x0 kernel/main.o
+
+.rel.dyn        0x00000000100011ec        0x0
+ .rel.iplt      0x00000000100011ec        0x0 kernel/main.o
+                0x0000000010000000                . = ORIGIN (ram)
+
+.data           0x00000000100011ec        0x0
+                0x00000000100011ec                INIT_DATA_VALUES = LOADADDR (.data)
+                0x00000000100011ec                INIT_DATA_START = .
+ *(.data)
+ .data          0x00000000100011ec        0x0 kernel/main.o
+ .data          0x00000000100011ec        0x0 kernel/systick.o
+ .data          0x00000000100011ec        0x0 boot/init.o
+ .data          0x00000000100011ec        0x0 lib/lib.a(delay.o)
+ .data          0x00000000100011ec        0x0 lib/lib.a(printf.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_fixunssfsi.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(divsf3.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(mulsf3.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(subsf3.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(fixsfsi.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_arm_cmpsf2.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_clzsi2.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(eqsf2.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(gesf2.o)
+ .data          0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(lesf2.o)
+                0x00000000100011ec                INIT_DATA_END = .
+                0x00000000100011ec                BSS_START = .
+                0x00000000100011ec                __bss_start__ = .
+
+.igot.plt       0x00000000100011ec        0x0
+ .igot.plt      0x00000000100011ec        0x0 kernel/main.o
+
+.bss            0x00000000100011ec        0x0
+ *(.bss)
+ .bss           0x00000000100011ec        0x0 kernel/main.o
+ .bss           0x00000000100011ec        0x0 kernel/systick.o
+ .bss           0x00000000100011ec        0x0 boot/init.o
+ .bss           0x00000000100011ec        0x0 lib/lib.a(delay.o)
+ .bss           0x00000000100011ec        0x0 lib/lib.a(printf.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_fixunssfsi.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(divsf3.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(mulsf3.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(subsf3.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(fixsfsi.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_arm_cmpsf2.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_clzsi2.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(eqsf2.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(gesf2.o)
+ .bss           0x00000000100011ec        0x0 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(lesf2.o)
+                0x00000000100011ec                BSS_END = .
+                0x00000000100011ec                __bss_end__ = .
+LOAD kernel/main.o
+LOAD kernel/systick.o
+LOAD boot/init.o
+LOAD lib/lib.a
+START GROUP
+LOAD /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a
+LOAD /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg.a
+LOAD /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a
+END GROUP
+OUTPUT(code.elf elf32-littlearm)
+
+.debug_info     0x0000000000000000      0xd21
+ .debug_info    0x0000000000000000      0x1af kernel/main.o
+ .debug_info    0x00000000000001af      0x1cb kernel/systick.o
+ .debug_info    0x000000000000037a      0x355 boot/init.o
+ .debug_info    0x00000000000006cf       0x4e lib/lib.a(delay.o)
+ .debug_info    0x000000000000071d      0x604 lib/lib.a(printf.o)
+
+.debug_abbrev   0x0000000000000000      0x553
+ .debug_abbrev  0x0000000000000000       0xb0 kernel/main.o
+ .debug_abbrev  0x00000000000000b0       0xc1 kernel/systick.o
+ .debug_abbrev  0x0000000000000171      0x17c boot/init.o
+ .debug_abbrev  0x00000000000002ed       0x48 lib/lib.a(delay.o)
+ .debug_abbrev  0x0000000000000335      0x21e lib/lib.a(printf.o)
+
+.debug_aranges  0x0000000000000000       0xb8
+ .debug_aranges
+                0x0000000000000000       0x20 kernel/main.o
+ .debug_aranges
+                0x0000000000000020       0x20 kernel/systick.o
+ .debug_aranges
+                0x0000000000000040       0x38 boot/init.o
+ .debug_aranges
+                0x0000000000000078       0x20 lib/lib.a(delay.o)
+ .debug_aranges
+                0x0000000000000098       0x20 lib/lib.a(printf.o)
+
+.debug_ranges   0x0000000000000000       0x50
+ .debug_ranges  0x0000000000000000       0x10 kernel/main.o
+ .debug_ranges  0x0000000000000010       0x28 boot/init.o
+ .debug_ranges  0x0000000000000038       0x18 lib/lib.a(printf.o)
+
+.debug_line     0x0000000000000000      0x3aa
+ .debug_line    0x0000000000000000       0x62 kernel/main.o
+ .debug_line    0x0000000000000062       0x63 kernel/systick.o
+ .debug_line    0x00000000000000c5       0xe7 boot/init.o
+ .debug_line    0x00000000000001ac       0x38 lib/lib.a(delay.o)
+ .debug_line    0x00000000000001e4      0x1c6 lib/lib.a(printf.o)
+
+.debug_str      0x0000000000000000      0x386
+ .debug_str     0x0000000000000000      0x1aa kernel/main.o
+ .debug_str     0x00000000000001aa       0x29 kernel/systick.o
+                                        0x1c7 (size before relaxing)
+ .debug_str     0x00000000000001d3       0xe3 boot/init.o
+                                        0x23f (size before relaxing)
+ .debug_str     0x00000000000002b6       0x3f lib/lib.a(delay.o)
+                                         0xbf (size before relaxing)
+ .debug_str     0x00000000000002f5       0x91 lib/lib.a(printf.o)
+                                        0x235 (size before relaxing)
+
+.comment        0x0000000000000000       0x6e
+ .comment       0x0000000000000000       0x6e kernel/main.o
+                                         0x6f (size before relaxing)
+ .comment       0x000000000000006e       0x6f kernel/systick.o
+ .comment       0x000000000000006e       0x6f boot/init.o
+ .comment       0x000000000000006e       0x6f lib/lib.a(delay.o)
+ .comment       0x000000000000006e       0x6f lib/lib.a(printf.o)
+
+.ARM.attributes
+                0x0000000000000000       0x31
+ .ARM.attributes
+                0x0000000000000000       0x31 kernel/main.o
+ .ARM.attributes
+                0x0000000000000031       0x31 kernel/systick.o
+ .ARM.attributes
+                0x0000000000000062       0x31 boot/init.o
+ .ARM.attributes
+                0x0000000000000093       0x31 lib/lib.a(delay.o)
+ .ARM.attributes
+                0x00000000000000c4       0x31 lib/lib.a(printf.o)
+ .ARM.attributes
+                0x00000000000000f5       0x1e /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x0000000000000113       0x1e /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x0000000000000131       0x2c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_fixunssfsi.o)
+ .ARM.attributes
+                0x000000000000015d       0x2c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(divsf3.o)
+ .ARM.attributes
+                0x0000000000000189       0x2c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(mulsf3.o)
+ .ARM.attributes
+                0x00000000000001b5       0x2c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(subsf3.o)
+ .ARM.attributes
+                0x00000000000001e1       0x2c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(fixsfsi.o)
+ .ARM.attributes
+                0x000000000000020d       0x1e /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_arm_cmpsf2.o)
+ .ARM.attributes
+                0x000000000000022b       0x1e /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_clzsi2.o)
+ .ARM.attributes
+                0x0000000000000249       0x2c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(eqsf2.o)
+ .ARM.attributes
+                0x0000000000000275       0x2c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(gesf2.o)
+ .ARM.attributes
+                0x00000000000002a1       0x2c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(lesf2.o)
+
+.debug_frame    0x0000000000000000      0x38c
+ .debug_frame   0x0000000000000000       0x28 kernel/main.o
+ .debug_frame   0x0000000000000028       0x40 kernel/systick.o
+ .debug_frame   0x0000000000000068       0x74 boot/init.o
+ .debug_frame   0x00000000000000dc       0x20 lib/lib.a(delay.o)
+ .debug_frame   0x00000000000000fc       0xec lib/lib.a(printf.o)
+ .debug_frame   0x00000000000001e8       0x20 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_frame   0x0000000000000208       0x28 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(_fixunssfsi.o)
+ .debug_frame   0x0000000000000230       0x3c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(divsf3.o)
+ .debug_frame   0x000000000000026c       0x3c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(mulsf3.o)
+ .debug_frame   0x00000000000002a8       0x38 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(subsf3.o)
+ .debug_frame   0x00000000000002e0       0x20 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(fixsfsi.o)
+ .debug_frame   0x0000000000000300       0x2c /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(eqsf2.o)
+ .debug_frame   0x000000000000032c       0x30 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(gesf2.o)
+ .debug_frame   0x000000000000035c       0x30 /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a(lesf2.o)
+
+.debug_loc      0x0000000000000000      0x879
+ .debug_loc     0x0000000000000000       0x23 kernel/systick.o
+ .debug_loc     0x0000000000000023       0xa3 boot/init.o
+ .debug_loc     0x00000000000000c6      0x7b3 lib/lib.a(printf.o)

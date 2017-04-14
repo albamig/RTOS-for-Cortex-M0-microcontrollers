@@ -1,21 +1,17 @@
 TOOL = /opt/arm-toolchain/bin/arm-none-eabi
 CC = $(TOOL)-gcc
-LD = $(TOOL)-gcc
+
+CFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles -c
 
 l = ../lib
-CFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles -c
-LDFLAGS = -Wall -g -Os -mcpu=cortex-m0 -mthumb -nostartfiles 
+b = ../boot
 
 OBJS = main.o systick.o
 
 all: $(OBJS) 
-	$(LD) $(LDFLAGS) $(OBJS) $(l)/lib.a -Wl,-T../boot/linker_scriptRAM.ld -o kernel
 
-main.o: main.c
-	$(CC) $(CFLAGS) $^
-
-systick.o: systick.c
+%.o: %.c
 	$(CC) $(CFLAGS) $^
 
 clean:
-	rm *.o kernel
+	rm -rf *.o
