@@ -7,9 +7,13 @@ void init_systick(float int_time) {
 	SYST_CVR = 0;
 	SYST_CSR = 0x7;
 
+#ifdef DEBUG
 	_printf("SysTick initialized\n");
+#endif
 }
 
 void systick_handler(void) {
-		_printf("Interrupción SysTick\n");
+#ifdef DEBUG
+	_printf("Interrupción SysTick\n");
+#endif
 }

@@ -3,7 +3,9 @@
 #include "systick.h"
 
 int main() {
+#ifdef DEBUG
 	_printf("Launching...\n");
+#endif
 
 	init_systick(10);
 

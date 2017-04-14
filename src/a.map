@@ -198,7 +198,7 @@ LOAD /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v6-m/libgcc.a
 LOAD /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/libg.a
 LOAD /opt/arm-toolchain/bin/../lib/gcc/arm-none-eabi/6.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/libc.a
 END GROUP
-OUTPUT(code.elf elf32-littlearm)
+OUTPUT(rtos.elf elf32-littlearm)
 
 .debug_info     0x0000000000000000      0xd21
  .debug_info    0x0000000000000000      0x1af kernel/main.o
@@ -231,12 +231,12 @@ OUTPUT(code.elf elf32-littlearm)
  .debug_ranges  0x0000000000000010       0x28 boot/init.o
  .debug_ranges  0x0000000000000038       0x18 lib/lib.a(printf.o)
 
-.debug_line     0x0000000000000000      0x3aa
+.debug_line     0x0000000000000000      0x3ac
  .debug_line    0x0000000000000000       0x62 kernel/main.o
- .debug_line    0x0000000000000062       0x63 kernel/systick.o
- .debug_line    0x00000000000000c5       0xe7 boot/init.o
- .debug_line    0x00000000000001ac       0x38 lib/lib.a(delay.o)
- .debug_line    0x00000000000001e4      0x1c6 lib/lib.a(printf.o)
+ .debug_line    0x0000000000000062       0x65 kernel/systick.o
+ .debug_line    0x00000000000000c7       0xe7 boot/init.o
+ .debug_line    0x00000000000001ae       0x38 lib/lib.a(delay.o)
+ .debug_line    0x00000000000001e6      0x1c6 lib/lib.a(printf.o)
 
 .debug_str      0x0000000000000000      0x386
  .debug_str     0x0000000000000000      0x1aa kernel/main.o

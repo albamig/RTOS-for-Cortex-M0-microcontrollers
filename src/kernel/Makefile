@@ -8,7 +8,11 @@ b = ../boot
 
 OBJS = main.o systick.o
 
+.PHONY: all debug
+
 all: $(OBJS) 
+debug: CFLAGS += -DDEBUG
+debug: all
 
 %.o: %.c
 	$(CC) $(CFLAGS) $^

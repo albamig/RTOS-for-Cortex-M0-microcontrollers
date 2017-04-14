@@ -7,7 +7,11 @@ l = ../lib
 
 OBJS = init.o
 
+.PHONY: all debug
+
 all: $(OBJS) 
+debug: CFLAGS += -DDEBUG
+debug: all
 
 %.o: %.c
 	$(CC) $(CFLAGS) $^

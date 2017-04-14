@@ -13,22 +13,27 @@ k = kernel/
 DIRS = $(k) $(b) $(l)
 OBJS = $(k)*.o $(b)*.o $(l)*.a
 
-.PHONY: $(DIRS)
+EXECNAME = rtos
 
-all: code.bin 
+.PHONY: all debug $(DIRS)
 
-code.bin: code.elf
+all: $(EXECNAME).bin
+debug: LDFLAGS += -DDEBUG
+debug: MKTGT = debug
+debug: all
+
+%.bin: %.elf
 	$(CP) -O binary $< $@
 
-code.elf: $(OBJS)
+%.elf: $(DIRS)
 	$(LD) $(LDFLAGS) -Wl,-T$(b)linker_scriptRAM.ld -Wl,-Map=a.map $(OBJS) -o $@ 
 	$(TOOL)-size $@
 
 $(DIRS):
-	cd $@ && make
+	cd $@ && make $(MKTGT)
 
-execute: code.bin
-	$(BT2) -d /dev/tty.usbserial-AH00LSB3 -s 115200 -sb 115200 -l code.bin
+execute: 
+	$(BT2) -d /dev/tty.usbserial-AH00LSB3 -s 115200 -sb 115200 -l $(EXECNAME).bin
 
 clean:
 	rm -rf *.elf a.map *~ *.bin *.elf
